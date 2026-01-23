@@ -79,7 +79,10 @@ jobs:
             uses: azure/setup-kubectl@v4
             
           - name: Configure kubectl
-            run: echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config       
-
+            run: |
+                mkdir -p ~/.kube
+                echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config
+          
+    
           - name: Deploy to Local Kubernetes
             run: kubectl apply -f k8s/local/app1-hello              
