@@ -101,6 +101,16 @@ jobs:
           - name: Setup kubectl
             uses: azure/setup-kubectl@v4
 
+          - name: Debug AKS Secrets Again
+            run: |
+              echo "CLUSTER_NAME length: ${#CLUSTER_NAME}"
+              echo "RESOURCE_GROUP length: ${#RESOURCE_GROUP}"
+              echo "CLUSTER_NAME value: ${CLUSTER_NAME}"
+              echo "RESOURCE_GROUP value: ${RESOURCE_GROUP}"
+            env:
+              CLUSTER_NAME: ${{ secrets.AZURE_AKS_CLUSTER_NAME }}
+              RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+
           - name: Set AKS Context
             uses: azure/k8s-set-context@v3
             with:
