@@ -114,6 +114,7 @@ jobs:
           - name: Set AKS Context
             uses: azure/k8s-set-context@v3
             with:
+              method: service-principal
               cluster-name: ${{ secrets.AZURE_AKS_CLUSTER_NAME }}
               resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
       
