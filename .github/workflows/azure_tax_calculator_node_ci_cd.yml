@@ -53,7 +53,7 @@ jobs:
           
           - name: Set up Docker Buildx
             uses: docker/setup-buildx-action@v3
-                            
+
           - name: Build and Push Docker Image
             uses: docker/build-push-action@v6
             with:
@@ -118,7 +118,12 @@ jobs:
             run: kubectl get nodes
 
           - name: Deploy to Azure AKS
-            run: kubectl apply -f k8s/azure/app1-hello
+            run: |
+                kubectl apply -f k8s/azure/app2-tax-calculator/service-a
+                kubectl apply -f k8s/azure/app2-tax-calculator/service-b
+                kubectl apply -f k8s/azure/app2-tax-calculator/frontend
+                kubectl apply -f k8s/azure/app2-tax-calculator/ingress.yaml
+
 
 
 
